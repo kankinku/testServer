@@ -22,8 +22,16 @@ function login() {
             "Content-Type" : "application/json",
         },
         body: JSON.stringify(req),
-    })
+    })// 로그인 성공여부 전달
     .then((res) => res.json())
-    .then((res) => console.log);
-    // 로그인 성공여부 전달
+    .then((res) => {
+        if(res.success) {
+            location.href = "/";
+        }else{
+            alert(res.msg);
+        }
+    })
+    .catch((err) => {
+        console.error("로그인중 에러 발생");
+    });
 }

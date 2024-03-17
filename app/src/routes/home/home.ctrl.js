@@ -1,9 +1,6 @@
 "use strict"
 
-const users = {
-    id : ["123","456","789"],
-    psword : ["0000" , "0000" , "0000"]
-}
+const UserStorage = require("../../models/UserStorage");
 
 const output = {
     home: (req, res) => {
@@ -18,20 +15,23 @@ const process = {
     login: (req, res) => {
         const id = req.body.id,
             psword = req.body.psword;
+        // const userStorage = new UserStorage(); -> 이거 안쓰면 userStorage.js에서 userStorage를 static으로 설정
 
+        const users = UserStorage.getUsers("id","psword");
+        //id와 pw만 받아와서 출력한다.
+
+        const response = {};
         if (users.id.includes(id)){
             const idx = users.id.indexOf(id);
             if (users.psword[idx] === psword) {
-                return res.json({
-                    succes: true,
-                    msg : "로그인에 성공하셨습니다.",
-                });
+                response.success = true;
+                return res.json(response);
             }
         }
-        return res.json({
-            success: false,
-            msg: "로그인에 실패하셨습니다.",
-        });
+        
+        response.success = false;
+        response.meg = "로그인에 실패";
+        return res.json(response);
     },
 };
 
