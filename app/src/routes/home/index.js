@@ -7,16 +7,15 @@ const router = express.Router();
 const ctrl = require("./home.ctrl");
 //ctrl을 require된 경로로 저장
 
-router.get("/", ctrl.home);
+router.get("/", ctrl.output.home);
+router.get("/login", ctrl.output.login);
+    // ctrl의login으로 export된걸로 인식
     // 요청이 들어오면 할 행동
     //req 요청(request),res 반응 (response)
     // "/"경로로 get요청이 오면 
     //render의 경로에 있는걸 출력
 
-router.get("/login", ctrl.login);
-    // ctrl의login으로 export된걸로 인식
-
-// router.post("/login", ctrl.login);
+router.post("/login", ctrl.process.login);
 
 module.exports = router;
 // 외부에서 사용 가능하도록 웹에서 내보내기
