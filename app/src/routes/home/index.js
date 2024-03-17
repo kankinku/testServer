@@ -16,5 +16,7 @@ router.get("/", ctrl.home);
 router.get("/login", ctrl.login);
     // ctrl의login으로 export된걸로 인식
 
+// router.post("/login", ctrl.login);
+
 module.exports = router;
 // 외부에서 사용 가능하도록 웹에서 내보내기
