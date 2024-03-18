@@ -9,6 +9,8 @@ const ctrl = require("./home.ctrl");
 
 router.get("/", ctrl.output.home);
 router.get("/login", ctrl.output.login);
+router.get("/join", ctrl.output.join);
+
     // ctrl의login으로 export된걸로 인식
     // 요청이 들어오면 할 행동
     //req 요청(request),res 반응 (response)

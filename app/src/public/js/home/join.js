@@ -6,6 +6,7 @@ const id = document.querySelector("#Id"),//선택자
     loginBtn = document.querySelector("#loginBtn"),
     plusBtn = document.querySelector("#plusBtn");
 
+console.log("hello register");
 // 위에서 dom이 id를 가져오기 전에 console.log가 먼져 출력됨
 
 loginBtn.addEventListener("click",login);
