@@ -8,10 +8,10 @@ class User {
   }
 
   login(){
-    const body = this.body;
+    const client = this.body;
     const { id, psword }  =  UserStorage.getUsersInfo();
     if(id){
-      if (id === body.id && psword === body.psword){
+      if (id === client.id && psword === client.psword){
         return { success: true };
       }
       return {success : false, msg: "비밀번호를 틀렸습니다."};
@@ -19,6 +19,11 @@ class User {
     return { success: false, msg: "존재하지 않는 아이디 입니다."}
   }
 
+  register(){
+    const client = this.body;
+    UserStorage.save(client);
+
+  }
   
 }
 module.exports = User;

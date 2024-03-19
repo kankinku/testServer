@@ -9,7 +9,7 @@ const ctrl = require("./home.ctrl");
 
 router.get("/", ctrl.output.home);
 router.get("/login", ctrl.output.login);
-router.get("/join", ctrl.output.join);
+router.get("/register", ctrl.output.register);
 
     // ctrl의login으로 export된걸로 인식
     // 요청이 들어오면 할 행동
@@ -18,6 +18,8 @@ router.get("/join", ctrl.output.join);
     //render의 경로에 있는걸 출력
 
 router.post("/login", ctrl.process.login);
+router.post("/register", ctrl.process.register);
 
 module.exports = router;
+
 // 외부에서 사용 가능하도록 웹에서 내보내기

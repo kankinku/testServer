@@ -39,5 +39,5 @@ function login() {
 }
 
 function plusUser() {
-    location.href = "/join";
+    location.href = "/register";
 }

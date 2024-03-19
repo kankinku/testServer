@@ -32,12 +32,11 @@ class UserStorage {
         return userInfo;
     }
 
-    static plusUser(id, psword, name) {
-        // 새로운 유저 정보를 추가
-        // 여기를 유저 DB에 정보를 추가하는 방식으로 바꾸면 될것 같습니다.
-        this.#users.id.push(id);
-        this.#users.psword.push(psword);
-        this.#users.name.push(name);
+    static save(userInfo) {
+        const users = this.#users;
+        users.id.push(userInfo.id);
+        users.name.push(userInfo.name);
+        users.psword.push(userInfo.psword);
     }
 }
 module.exports = UserStorage;
