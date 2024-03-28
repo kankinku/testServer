@@ -1,4 +1,4 @@
-"use state"
+"use strict";
 
 // DOM -> Document Object Model
 const id = document.querySelector("#Id"),//선택자
@@ -13,6 +13,7 @@ plusBtn.addEventListener("click",plusUser);
 
 
 function login() {
+    //req 응답으로 user가 입력한 id와 psword가 전송된다.
     const req = {
         id: id.value,
         psword : psword.value,
