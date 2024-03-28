@@ -4,7 +4,7 @@ class UserStorage {
     static #users = { 
         //변수에 직접 접속할경우 static을 사용해준다.
         // #을 통해서 public이였던 변수를 privit로 변경시켜줌
-        id:["1234","sadf","qwer"],
+        id:["Jinu","sadf","qwer"],
         psword: ["0000","0000","0000"],
         name: ["a","b","c"],
     };
