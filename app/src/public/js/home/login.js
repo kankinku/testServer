@@ -1,44 +1,62 @@
 "use strict";
 
-// DOM -> Document Object Model
-const id = document.querySelector("#Id"),//선택자
-    psword = document.querySelector("#Psword"),
-    loginBtn = document.querySelector("#loginBtn"),
-    plusBtn = document.querySelector("#plusBtn");
+// 필요한 DOM 요소들을 선택합니다.
+const idInput = document.querySelector("#Id"); // 아이디 입력 필드
+const pswordInput = document.querySelector("#Psword"); // 비밀번호 입력 필드
+const loginBtn = document.querySelector("#loginBtn"); // 로그인 버튼
+const plusBtn = document.querySelector("#plusBtn"); // 회원가입 버튼
 
-// 위에서 dom이 id를 가져오기 전에 console.log가 먼져 출력됨
+// 로그인 버튼 클릭 이벤트 핸들러를 등록합니다.
+loginBtn.addEventListener("click", login);
 
-loginBtn.addEventListener("click",login);
-plusBtn.addEventListener("click",plusUser);
+// 회원가입 버튼 클릭 이벤트 핸들러를 등록합니다.
+plusBtn.addEventListener("click", plusUser);
 
+// 로그인을 시도하는 함수입니다.
+function login(event) {
+    event.preventDefault(); // 기본 동작(폼 제출)을 중지합니다.
 
-function login() {
-    //req 응답으로 user가 입력한 id와 psword가 전송된다.
+    // 사용자가 입력한 아이디와 비밀번호를 요청 객체로 만듭니다.
     const req = {
-        id: id.value,
-        psword : psword.value,
-    }
+        id: idInput.value,
+        psword: pswordInput.value,
+    };
 
-    fetch("/login",{
+    // 서버에 로그인 요청을 보냅니다.
+    fetch("/login", {
         method: "POST",
         headers: {
-            "Content-Type" : "application/json",
+            "Content-Type": "application/json",
         },
         body: JSON.stringify(req),
-    })// 로그인 성공여부 전달
-    .then((res) => res.json())
+    })
     .then((res) => {
-        if(res.success) {
+        // 응답이 성공적으로 받아졌는지 확인합니다.
+        if (!res.ok) {
+            throw new Error("서버 응답 실패");
+        }
+        return res.json(); // JSON 형태로 변환하여 반환합니다.
+    })
+    .then((res) => {
+        // 로그인이 성공했는지 확인합니다.
+        if (res.success) {
+            // 성공 시 메인 페이지로 이동합니다.
             location.href = "/";
-        }else{
+        } else {
+            // 실패 시 사용자에게 메시지를 표시합니다.
             alert(res.msg);
         }
     })
     .catch((err) => {
-        console.error("로그인중 에러 발생");
+        // 오류가 발생했을 때 콘솔에 오류 메시지를 출력합니다.
+        console.error("로그인 중 오류 발생:", err.message);
+        // 사용자에게 오류 메시지를 알립니다.
+        alert("로그인 중 오류가 발생했습니다.");
     });
 }
 
+// 회원가입 페이지로 이동하는 함수입니다.
 function plusUser() {
+    // 회원가입 페이지로 이동합니다.
     location.href = "/register";
 }
