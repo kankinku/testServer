@@ -9,7 +9,9 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "express": "^4.19.2",
     "fs": "^0.0.1-security",
-    "install": "^0.13.0"
+    "install": "^0.13.0",
+    "mysql": "^2.18.1"
   }
 }
