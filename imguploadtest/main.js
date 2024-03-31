@@ -95,14 +95,17 @@ const uploadMiddleware = upload.single('myFile');
 // 이미지 업로드 후 MySQL에 이미지 정보 저장 및 파일 정보 다시 불러오기
 app.post('/upload', uploadMiddleware, (req, res) => {
   console.log(req.file);
+  console.log("Uploaded file original name:", req.file.originalname);
 
   // 파일 이름 DB에 저장
   const filename = req.file.filename;
   //여기서 색으로 파싱
   const filetema = req.file.filename.split('_');
   const tema = filetema[0];
+  //upload file의 original 이름을 DB에 저장
+  const originalname = req.file.originalname;
 
-  const insertSql = `INSERT INTO files (name, tema) VALUES ('${filename}', '${tema}');`;
+  const insertSql = `INSERT INTO files (name, tema, originalname) VALUES ('${filename}', '${tema}', '${originalname}');`;
 
   connection.query(insertSql, (err, result) => {
     if (err) {
