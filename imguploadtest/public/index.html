@@ -7,7 +7,12 @@
 <body>
     <form action="/upload" method="POST" enctype="multipart/form-data">
         <input type="file" name="myFile" />
-        <button type="submit">Upload</button>
+        <select name="tema" id="tema">
+            <option value="red">JavaScript</option>
+            <option value="blue">PHP</option>
+            <option value="yellow">Java</option>
+          </select>
+          <button type="submit">Upload</button>
     </form>
 </body>
 </html>
