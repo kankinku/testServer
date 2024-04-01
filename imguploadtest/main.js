@@ -5,7 +5,7 @@ const path = require('path');
 const multer = require('multer');
 const uuid4 = require('uuid4');
 const fs = require('fs');
-const mysql = require('mysql');
+const mysql = require('mysql2');
 
 const publicPath = path.join(__dirname, 'public');
 const uploadFolderPath = path.join(__dirname, 'file');
