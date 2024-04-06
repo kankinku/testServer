@@ -1,11 +1,11 @@
 // main.js
 const express = require('express');
+const mysql = require('mysql2');
 const app = express();
 const path = require('path');
 const multer = require('multer');
 const uuid4 = require('uuid4');
 const fs = require('fs');
-const mysql = require('mysql');
 
 const publicPath = path.join(__dirname, 'public');
 const uploadFolderPath = path.join(__dirname, 'file');
@@ -33,7 +33,6 @@ function reloadFile(dbFiles) {
       console.error('파일 목록을 읽어오는 중 오류가 발생했습니다: ', err);
       throw err;
     }
-
     // 데이터베이스에는 존재하지만 파일 시스템에는 없는 파일 확인 및 삭제
     dbFiles.forEach((dbFile) => {
       const fileName = dbFile.name;
