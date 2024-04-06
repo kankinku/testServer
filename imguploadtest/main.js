@@ -6,6 +6,10 @@ const path = require('path');
 const multer = require('multer');
 const uuid4 = require('uuid4');
 const fs = require('fs');
+<<<<<<< HEAD
+=======
+const mysql = require('mysql2');
+>>>>>>> acccd5e789a99ddfa3b639ce2859ae985507ed2b
 
 const publicPath = path.join(__dirname, 'public');
 const uploadFolderPath = path.join(__dirname, 'file');
