@@ -77,8 +77,8 @@ const upload = multer({
     filename(req, file, done) {
       const randomID = uuid4();
       const ext = path.extname(file.originalname);
-      const tema = req.body.tema; // 테마 값 받아오기
-      const filename = `${tema}_${randomID}${ext}`; // 테마와 랜덤 ID를 합쳐서 파일 이름으로 설정
+      const thema = req.body.thema; // 테마 값 받아오기
+      const filename = `${thema}_${randomID}${ext}`; // 테마와 랜덤 ID를 합쳐서 파일 이름으로 설정
       done(null, filename);
     },
     destination(req, file, done) {
@@ -99,12 +99,12 @@ app.post('/upload', uploadMiddleware, (req, res) => {
   // 파일 이름 DB에 저장
   const filename = req.file.filename;
   //여기서 색으로 파싱
-  const filetema = req.file.filename.split('_');
-  const tema = filetema[0];
+  const filethema = req.file.filename.split('_');
+  const thema = filethema[0];
   //upload file의 original 이름을 DB에 저장
   const originalname = req.file.originalname;
 
-  const insertSql = `INSERT INTO files (name, tema, originalname) VALUES ('${filename}', '${tema}', '${originalname}');`;
+  const insertSql = `INSERT INTO files (name, thema, originalname) VALUES ('${filename}', '${thema}', '${originalname}');`;
 
   connection.query(insertSql, (err, result) => {
     if (err) {
