@@ -4,28 +4,13 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql2');
 
-// MySQL 연결 설정
-const connection = mysql.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '0000',
-  database: 'readimg'
-});
+const connection = require('./public/db');
 
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
 app.get("/", (req, res) => {
   res.sendFile(path.join(publicPath, "index.html"));
-});
-
-// MySQL 연결
-connection.connect((err) => {
-  if (err) {
-    console.error('Error connecting to MySQL database: ' + err.stack);
-    return;
-  }
-  console.log('Connected to MySQL database.');
 });
 
 app.get('/search', (req, res) => {
@@ -39,7 +24,6 @@ app.get('/search', (req, res) => {
     }
     // 결과를 JSON 형태로 반환
     const fileNames = results.map(result => result.name);
-    console.log(fileNames);
     // 파일 이름을 사용하여 파일 시스템에서 파일 경로를 찾음
     const filePaths = fileNames.map(fileName => {
       return `./file/${fileName}`; 
