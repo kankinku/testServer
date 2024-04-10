@@ -23,10 +23,10 @@ app.get('/search', (req, res) => {
       return;
     }
     // 결과를 JSON 형태로 반환
-    const fileDestination = results.map(result => result.destination);
+    const fileNames = results.map(result => result.name);
     // 파일 이름을 사용하여 파일 시스템에서 파일 경로를 찾음
-    const filePaths = fileDestination.map(fileName => {
-      return fileestination; 
+    const filePaths = fileNames.map(fileName => {
+      return `./file/${fileName}`; 
       //문제점 
       //file의 경로를 ../로 나가서 이후 지정한다면 인식하지 못한다.
     });
