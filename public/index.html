@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Button Click</title>
+</head>
+<body>
+    <button id="show">Show</button>
+    <button id="upload">upload</button>
+
+    <script>
+        document.getElementById("show").addEventListener('click', () => {
+            window.location.href += "show";
+        });
+        document.getElementById("upload").addEventListener('click', () => {
+            window.location.href += "upload";
+        });
+    </script>
+</body>
+</html>
