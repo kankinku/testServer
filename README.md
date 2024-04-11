@@ -11,3 +11,6 @@ table : files<br>
 | create_date  | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |<br>
 | originalname | varchar(255) | YES  |     | NULL              |                   |<br>
 +--------------+--------------+------+-----+-------------------+-------------------+<br>
+
+work
+id drop
