@@ -12,5 +12,23 @@ table : files<br>
 | originalname | varchar(255) | YES  |     | NULL              |                   |<br>
 +--------------+--------------+------+-----+-------------------+-------------------+<br>
 
-work
-id drop
+DB
+CREATE TABLE images (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_id INT,
+    gallery_id INT,
+    title VARCHAR(255),
+    tag TEXT,
+    descript TEXT,
+    url VARCHAR(255)
+);
+
+CREATE TABLE gallery (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(255),
+    theme VARCHAR(255),
+    descript TEXT,
+    admin_id INT,
+    created_at TIMESTAMP,
+    modified_at TIMESTAMP
+);
