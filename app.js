@@ -6,6 +6,8 @@ const path = require('path');
 const searchRouter = require('./router/searchRouter');
 const uploadRoute = require('./router/uploadRoute');
 
+const bodyParser = require('body-parser');
+
 const publicPath = path.join(__dirname, 'public');
 app.use(express.static(publicPath));
 
@@ -24,6 +26,8 @@ app.get("/upload", (req, res) => {
 
 app.use('/search', searchRouter);
 app.use('/upload', uploadRoute);
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 
 app.listen(3000, () => {
   console.log('Server is running on port 3000');

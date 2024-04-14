@@ -5,14 +5,43 @@
     <title>Image Server</title>
 </head>
 <body>
-    <form action="/upload" method="POST" enctype="multipart/form-data">
-        <select name="thema" id="thema">
+    <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+        <h4>user_Id</h4>
+        <input type="text" id="user_Id" name="user_Id"><br>
+        <h4>gallery name</h4>
+        <input type="text" id="gallery_Id" name="gallery_Id"><br>
+        <h4>theme</h4>
+        <select name="theme" id="theme">
           <option value="red">Red</option>
           <option value="blue">Blue</option>
           <option value="yellow">Yellow</option>
         </select>
+        <h4>Select File</h4>
         <input type="file" name="myFile" />
-        <button type="submit">Upload</button>
+        <button type="submit" onclick="submitForm()">Upload</button>
     </form>
+
+    <script>
+        function submitForm() {
+            // user_Id의 값을 가져옴
+            var userId = document.getElementById("user_Id").value;
+            // JWT 토큰 생성
+            var token = createJWTToken(userId);
+            console.log('aa')
+            // 토큰을 쿠키에 저장
+            document.cookie = "accessToken=" + token + "; path=/";
+            // Form 전송
+            document.getElementById("uploadForm").submit();
+        }
+
+        function createJWTToken(userId) {
+            // 토큰 내용 생성
+            var tokenPayload = {
+                userId: userId,
+            };
+            // 토큰 생성 및 반환 (jwt-util.js 파일 필요)
+            return sign(tokenPayload);
+        }
+    </script>
 </body>
 </html>

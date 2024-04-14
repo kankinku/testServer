@@ -1,7 +1,7 @@
 {
   "name": "server",
   "version": "1.0.0",
-  "description": "",
+  "description": "mysql<br>\r DB name : readimg<br>\r table : files<br>\r ----------------<br>\r +--------------+--------------+------+-----+-------------------+-------------------+<br>\r | Field        | Type         | Null | Key | Default           | Extra             |<br>\r +--------------+--------------+------+-----+-------------------+-------------------+<br>\r | id           | int          | NO   | PRI | NULL              | auto_increment    |<br>\r | name         | varchar(255) | NO   |     | NULL              |                   |<br>\r | thema        | varchar(255) | YES  |     | NULL              |                   |<br>\r | create_date  | timestamp    | YES  |     | CURRENT_TIMESTAMP | DEFAULT_GENERATED |<br>\r | originalname | varchar(255) | YES  |     | NULL              |                   |<br>\r +--------------+--------------+------+-----+-------------------+-------------------+<br>",
   "main": "app.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -11,6 +11,8 @@
   "dependencies": {
     "express": "^4.19.2",
     "fs": "^0.0.1-security",
+    "jsonwebtoken": "^9.0.2",
+    "multer": "^1.4.5-lts.1",
     "mysql2": "^3.9.4",
     "path": "^0.12.7",
     "uuid4": "^2.0.3"
