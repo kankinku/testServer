@@ -8,7 +8,7 @@ router.get('/', (req, res) => {
   const thema = req.query.thema;
   
   // MySQL 쿼리 실행
-  connection.query(`SELECT name FROM files WHERE thema = '${thema}'`, function(error, results, fields){
+  connection.query(`SELECT name FROM images WHERE thema = '${thema}'`, function(error, results, fields){
     if (error) {
       console.error('Error executing MySQL query: ' + error.stack);
       res.status(500).json({ error: 'Internal Server Error' });

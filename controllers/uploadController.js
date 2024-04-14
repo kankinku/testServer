@@ -48,7 +48,8 @@ exports.uploadFile = (req, res) => {
 
     // 파일 이름과 user_Id DB에 저장
     // const insertSql = `INSERT INTO files (title, theme, user_id) VALUES ('${filename}', '${theme}', '${user_Id}');`;
-    const insertSql = `INSERT INTO files (user_Id, gallery_Id, title, theme, image_Id) VALUES ( '${user_Id}', '${gallery_Id}', '${filename}', '${theme}', '${image_id}');`;
+    
+    const insertSql = `INSERT INTO images (user_Id, gallery_Id, title, theme, image_Id) VALUES ( '${user_Id}', '${gallery_Id}', '${filename}', '${theme}', '${image_id}');`;
 
     connection.query(insertSql, (err, result) => {
       if (err) {
@@ -58,7 +59,7 @@ exports.uploadFile = (req, res) => {
       }
       console.log(`${filename}이(가) DB에 저장되었습니다.`);
 
-      const selectSql = 'SELECT * FROM files';
+      const selectSql = 'SELECT * FROM images';
       connection.query(selectSql, (err, rows) => {
         if (err) {
           console.error('파일 정보를 가져오는 중 오류가 발생했습니다: ', err);
