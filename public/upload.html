@@ -20,8 +20,8 @@
         <input type="file" name="myFile" />
         <button type="submit" onclick="submitForm()">Upload</button>
     </form>
-
-    <script>
+    <!-- 토큰 이슈 해결시 주석해제 -->
+    <!-- <script>
         function submitForm() {
             // user_Id의 값을 가져옴
             var userId = document.getElementById("user_Id").value;
@@ -42,6 +42,6 @@
             // 토큰 생성 및 반환 (jwt-util.js 파일 필요)
             return sign(tokenPayload);
         }
-    </script>
+    </script> -->
 </body>
 </html>
