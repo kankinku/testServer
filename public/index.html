@@ -8,8 +8,9 @@
 <body>
     <button id="show">Show</button>
     <button id="upload">upload</button>
+    <button id="createGallery">createGallery</button>
 
-    <h2> thema 별로 페이지 분리, 테마별 input data 분리ㄴ</h2>
+    <h2> thema 별로 페이지 분리, 테마별 input data 분리</h2>
     <script>
         document.getElementById("show").addEventListener('click', () => {
             window.location.href += "show";
@@ -17,7 +18,9 @@
         document.getElementById("upload").addEventListener('click', () => {
             window.location.href += "upload";
         });
-        
+        document.getElementById("createGallery").addEventListener('click', () => {
+            window.location.href += "createGallery";
+        });
     </script>
 </body>
 </html>

@@ -1,3 +1,4 @@
+<!-- createGallery.html -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,7 +7,7 @@
   <title>Create Gallery</title>
 </head>
 <body>
-  <form id="uploadForm" action="/upload" method="POST" enctype="multipart/form-data">
+  <form id="createGalleryForm" action="/createGallery" method="post" >
     <h4>user_Id</h4>
     <input type="text" id="user_Id" name="user_Id"><br>
     <h4>gallery name</h4>
@@ -16,8 +17,11 @@
       <option value="red">Red</option>
       <option value="blue">Blue</option>
       <option value="yellow">Yellow</option>
-    </select>
-    <button type="submit">Upload</button>
+    </select><br><br>
+    <input type="radio" name="type" value="0">개인 갤러리
+    <input type="radio" name="type" value="1">공유 갤러리
+    <br><br>
+    <button type="submit">Create Gallery</button>
   </form>
 </body>
 </html>

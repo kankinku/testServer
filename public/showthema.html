@@ -8,7 +8,8 @@
 <body>
   <h2>Select your thema</h2>
     <form id="uploadForm">
-        <select name="thema" id="thema">
+        <select name="gallery" id="gallery"></select>
+        <select name="theme" id="theme">
             <option value="red">Red</option>
             <option value="blue">Blue</option>
             <option value="yellow">Yellow</option>
@@ -18,6 +19,29 @@
 
     <div id="fileNames"></div>
     <script>
+        // 페이지 로드시 실행되는 함수
+        // client-side JavaScript 코드
+        // client-side JavaScript 코드
+        window.onload = function() {
+            // 서버에 갤러리 아이디 목록을 요청
+            fetch('/search')
+                .then(response => response.json())
+                .then(data => {
+                    // 받은 데이터를 기반으로 select 요소 생성
+                    var selectElement = document.getElementById('gallery');
+                    data.forEach(galleryId => {
+                        var option = document.createElement('option');
+                        option.value = galleryId;
+                        option.textContent = galleryId;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        };
+
+
+
+
         function searchFiles() {
             // 선택된 테마 가져오기
             var selectedThema = document.getElementById("thema").value;

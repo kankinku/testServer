@@ -22,8 +22,17 @@ connection.connect((err) => {
       console.error('파일 목록을 가져오는 중 오류가 발생했습니다: ', err);
       throw err;
     }
-    // 파일 시스템에서 파일 목록 가져오기
-    const folderPath = './public/imagefile'; // 파일이 저장된 폴더 경로로 수정하세요
+    if(dbFiles != null){
+      searchFile(dbFiles)
+    }
+  });
+});
+
+module.exports = connection;
+
+  // 파일 시스템에서 파일 목록 가져오기
+function searchFile(dbFiles) {
+  const folderPath = './public/imagefile'; // 파일이 저장된 폴더 경로로 수정하세요
     fs.readdir(folderPath, (err, titles) => {
       if (err) {
         console.error('파일 목록을 읽어오는 중 오류가 발생했습니다: ', err);
@@ -45,7 +54,4 @@ connection.connect((err) => {
         }
       });
     });
-  });
-});
-
-module.exports = connection;
+}

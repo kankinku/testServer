@@ -19,21 +19,20 @@ table의 id필드를 이용해서 아이디를 분리 <br>
 
 DB
 CREATE TABLE images (
-    id INT AUTO_INCREMENT PRIMARY KEY,
-    user_id INT,
-    gallery_id INT,
+    createDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    theme VARCHAR(255),
     title VARCHAR(255),
-    tag TEXT,
-    descript TEXT,
-    url VARCHAR(255)
+    user_Id VARCHAR(255),
+    gallery_Id VARCHAR(255),
+    image_Id VARCHAR(255)
 );
+
 
 CREATE TABLE gallery (
     id INT AUTO_INCREMENT PRIMARY KEY,
-    title VARCHAR(255),
+    gallery_Id VARCHAR(255),
     theme VARCHAR(255),
-    descript TEXT,
-    admin_id INT,
+    user_Id varchar(255),
     created_at TIMESTAMP,
     modified_at TIMESTAMP
 );
