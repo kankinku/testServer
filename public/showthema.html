@@ -9,19 +9,11 @@
   <h2>Select your thema</h2>
     <form id="uploadForm">
         <select name="gallery" id="gallery"></select>
-        <select name="theme" id="theme">
-            <option value="red">Red</option>
-            <option value="blue">Blue</option>
-            <option value="yellow">Yellow</option>
-        </select>
         <button type="button" onclick="searchFiles()">Search</button>
     </form>
 
     <div id="fileNames"></div>
     <script>
-        // 페이지 로드시 실행되는 함수
-        // client-side JavaScript 코드
-        // client-side JavaScript 코드
         window.onload = function() {
             // 서버에 갤러리 아이디 목록을 요청
             fetch('/search')
@@ -43,19 +35,20 @@
 
 
         function searchFiles() {
-            // 선택된 테마 가져오기
-            var selectedThema = document.getElementById("thema").value;
-    
-            // 서버에 선택된 테마를 전송하여 파일 이름 검색 요청
-            fetch(`/search?thema=${selectedThema}`)
+            // 선택된 갤러리 아이디 가져오기
+            var selectedGalleryId = document.getElementById("gallery").value;
+            console.log(selectedGalleryId);
+
+            // 서버에 선택된 갤러리 아이디를 전송하여 이미지 파일 이름 검색 요청
+            fetch(`/search?gallery_Id=${selectedGalleryId}`)
                 .then(response => response.json())
                 .then(data => {
                     // 결과를 받아서 출력
                     var fileNamesDiv = document.getElementById("fileNames");
                     fileNamesDiv.innerHTML = ""; // 이전 결과 초기화
-                    data.forEach(fileName => {
+                    data.forEach(imageId => {
                         var img = document.createElement("img");
-                        img.src = `./imagefile/${fileName}`; // 이미지 파일의 경로를 설정
+                        img.src = `./imagefile/${imageId}`; // 이미지 파일의 경로를 설정
                         img.style.height = '200px';
                         img.style.width = '150px';
                         fileNamesDiv.appendChild(img); // 이미지를 결과 디브에 추가

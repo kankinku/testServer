@@ -37,19 +37,8 @@ exports.uploadFile = (req, res) => {
     const image_id = req.file.filename;
     const gallery_Id = req.body.gallery_Id;
     const user_Id = req.body.user_Id;
-    const theme = req.body.theme;
-
-
-    // 토큰 관련 이슈 해결이후 주석해제
-    // JWT 토큰에서 user_Id 가져오기
-    // const token = req.cookies.accessToken; // 쿠키에서 토큰을 가져옵니다.
-    // const decodedToken = jwt.verify(token, 'KVXq573!PHLk/U,A(nm@}a'); // 토큰을 해독합니다.
-    // const user_Id = decodedToken.userId; // 토큰에서 user_Id를 추출합니다.
-
-    // 파일 이름과 user_Id DB에 저장
-    // const insertSql = `INSERT INTO files (title, theme, user_id) VALUES ('${filename}', '${theme}', '${user_Id}');`;
     
-    const insertSql = `INSERT INTO images (user_Id, gallery_Id, title, theme, image_Id) VALUES ( '${user_Id}', '${gallery_Id}', '${filename}', '${theme}', '${image_id}');`;
+    const insertSql = `INSERT INTO images (user_Id, gallery_Id, title, image_Id) VALUES ( '${user_Id}', '${gallery_Id}', '${filename}', '${image_id}');`;
 
     connection.query(insertSql, (err, result) => {
       if (err) {
