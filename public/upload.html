@@ -9,7 +9,7 @@
         <h4>user_Id</h4>
         <input type="text" id="user_Id" name="user_Id"><br>
         <h4>gallery name</h4>
-        <input type="text" id="gallery_Id" name="gallery_Id"><br>
+        <select name="gallery_Id" id="gallery_Id"></select>
         <h4>theme</h4>
         <select name="theme" id="theme">
           <option value="red">Red</option>
@@ -21,27 +21,23 @@
         <button type="submit" onclick="submitForm()">Upload</button>
     </form>
     <!-- 토큰 이슈 해결시 주석해제 -->
-    <!-- <script>
-        function submitForm() {
-            // user_Id의 값을 가져옴
-            var userId = document.getElementById("user_Id").value;
-            // JWT 토큰 생성
-            var token = createJWTToken(userId);
-            console.log('aa')
-            // 토큰을 쿠키에 저장
-            document.cookie = "accessToken=" + token + "; path=/";
-            // Form 전송
-            document.getElementById("uploadForm").submit();
-        }
-
-        function createJWTToken(userId) {
-            // 토큰 내용 생성
-            var tokenPayload = {
-                userId: userId,
-            };
-            // 토큰 생성 및 반환 (jwt-util.js 파일 필요)
-            return sign(tokenPayload);
-        }
-    </script> -->
+    <script>
+         window.onload = function() {
+            // 서버에 갤러리 아이디 목록을 요청
+            fetch('/search')
+                .then(response => response.json())
+                .then(data => {
+                    // 받은 데이터를 기반으로 select 요소 생성
+                    var selectElement = document.getElementById('gallery_Id');
+                    data.forEach(galleryId => {
+                        var option = document.createElement('option');
+                        option.value = galleryId;
+                        option.textContent = galleryId;
+                        selectElement.appendChild(option);
+                    });
+                })
+                .catch(error => console.error('Error:', error));
+        };
+    </script>
 </body>
 </html>
