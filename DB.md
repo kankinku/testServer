@@ -9,14 +9,14 @@ CREATE TABLE images (
 );
 
 CREATE TABLE gallery (
-  id SERIAL PRIMARY KEY,
-  gallery_id VARCHAR(255),
-  user_id VARCHAR(255), t
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-  modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  type TINYINT DEFAULT 0,
+  id INT AUTO_INCREMENT PRIMARY KEY,
+  user_Id VARCHAR(255) NOT NULL,
+  gallery_Id VARCHAR(255) NOT NULL,
   theme VARCHAR(255) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  modified_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 );
+
 
 <!-- CREATE TABLE theme (
   theme SERIAL PRIMARY KEY,
@@ -24,9 +24,9 @@ CREATE TABLE gallery (
 ); --> 아직 미구현
 
 CREATE TABLE tag (
-  tag_id SERIAL PRIMARY KEY,
+  tag_id INT PRIMARY KEY,
   main_tag VARCHAR(255),
-  theme VARCHAR(255),
+  theme VARCHAR(255)
 );
 
 1. theme에서 theme를 선택한다고 생각하자 -> 어차피 theme는 운영진이 제공함
