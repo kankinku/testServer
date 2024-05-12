@@ -9,6 +9,8 @@
   <h2>Select your Gallery</h2>
     <form id="uploadForm">
         <select name="gallery" id="gallery"></select>
+        <h4>User ID</h4>
+        <input id="user_Id" name="user_Id"><br>
         <button type="button" onclick="searchFiles()">Search</button>
     </form>
 
@@ -31,16 +33,14 @@
                 .catch(error => console.error('Error:', error));
         };
 
-
-
-
         function searchFiles() {
             // 선택된 갤러리 아이디 가져오기
             var selectedGalleryId = document.getElementById("gallery").value;
-            console.log(selectedGalleryId);
+            var selectedUserId = document.getElementById("user_Id").value; // 추가: 사용자 ID 가져오기
+            console.log(selectedGalleryId, selectedUserId);
 
-            // 서버에 선택된 갤러리 아이디를 전송하여 이미지 파일 이름 검색 요청
-            fetch(`/search?gallery_Id=${selectedGalleryId}`)
+            // 서버에 선택된 갤러리 아이디와 사용자 ID를 전송하여 이미지 파일 이름 검색 요청
+            fetch(`/search?gallery_Id=${selectedGalleryId}&user_Id=${selectedUserId}`) // 수정: 갤러리 ID와 사용자 ID 모두 전송
                 .then(response => response.json())
                 .then(data => {
                     // 결과를 받아서 출력
