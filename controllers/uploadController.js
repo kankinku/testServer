@@ -37,8 +37,10 @@ exports.uploadFile = (req, res) => {
     const image_id = req.file.filename;
     const gallery_Id = req.body.gallery_Id;
     const user_Id = req.body.user_Id;
+    const main_tag = req.body.main_tag;
+    const sub_tag = req.body.sub_tag;
     
-    const insertSql = `INSERT INTO images (user_Id, gallery_Id, title, image_Id) VALUES ( '${user_Id}', '${gallery_Id}', '${filename}', '${image_id}');`;
+    const insertSql = `INSERT INTO images (user_Id, gallery_Id, title, image_Id, main_tag, sub_tag) VALUES ('${user_Id}', '${gallery_Id}', '${filename}', '${image_id}', '${main_tag}', '${sub_tag}');`;
 
     connection.query(insertSql, (err, result) => {
       if (err) {

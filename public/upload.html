@@ -10,12 +10,8 @@
         <input type="text" id="user_Id" name="user_Id"><br>
         <h4>gallery name</h4>
         <select name="gallery_Id" id="gallery_Id"></select>
-        <h4>theme</h4>
-        <select name="theme" id="theme">
-          <option value="red">Red</option>
-          <option value="blue">Blue</option>
-          <option value="yellow">Yellow</option>
-        </select>
+        <h4>select Theme</h4>
+        <select name="main_tag" id="main_tag"></select>
         <h4>Select File</h4>
         <input type="file" name="myFile" />
         <button type="submit" onclick="submitForm()">Upload</button>
@@ -37,6 +33,24 @@
                     });
                 })
                 .catch(error => console.error('Error:', error));
+
+            // 선택된 갤러리의 테마 정보를 받아와서 DB의 tag 테이블에서 해당 테마와 일치하는 태그를 option으로 추가
+            document.getElementById('gallery_Id').addEventListener('change', function() {
+                var selectedGalleryId = this.value;
+                fetch(`/tags?galleryId=${selectedGalleryId}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        var selectElement = document.getElementById('main_tag');
+                        selectElement.innerHTML = ''; // 기존의 내용을 지움
+                        data.forEach(tag => {
+                            var option = document.createElement('option');
+                            option.value = tag;
+                            option.textContent = tag;
+                            selectElement.appendChild(option);
+                        });
+                    })
+                    .catch(error => console.error('Error:', error));
+            });
         };
     </script>
 </body>
